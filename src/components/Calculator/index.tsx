@@ -43,6 +43,7 @@ const Calculator = ({ selectedData, isOpen, onClose }: TCalculator) => {
         isOpen={isOpen}
         placement="right"
         onClose={onClose}
+        onCloseComplete={() => setResult(0)}
         closeOnEsc={true}
       >
         <DrawerOverlay />

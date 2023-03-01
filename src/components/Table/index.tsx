@@ -56,7 +56,7 @@ const Table = ({ onOpen }: TTable) => {
             <Td>{item.valueA}</Td>
             <Td>{item.valueB}</Td>
             <Td>
-              <Button onClick={() => onOpen(item)}>Selecionar</Button>
+              <Button bgColor={"#4146ff"} textColor={"white"} onClick={() => onOpen(item)}>Selecionar</Button>
             </Td>
           </Tr>
         ))}
