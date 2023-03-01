@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Calculator } from "../components/Calculator";
+import Header from "../components/Header";
 import { Table, TData } from "../components/Table";
 import { ContainerHome } from "../styles/HomeStyle";
 
@@ -17,10 +18,12 @@ const Home = () => {
   }
 
   return (
+    <Header>
     <ContainerHome>
       <Table onOpen={onOpen}/>
       <Calculator selectedData={selectedData} isOpen={isOpen} onClose={onClose}/>
     </ContainerHome>
+    </Header>
   );
 };
 
