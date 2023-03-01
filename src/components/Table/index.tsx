@@ -32,11 +32,8 @@ const Table = ({ onOpen }: TTable) => {
         setData(response.data);
       })
       .catch(function (error: any) {
-        // manipula erros da requisição
+        alert("Erro ao obter informações");
         console.error(error);
-      })
-      .finally(function () {
-        // sempre será executado
       });
   };
 
@@ -56,8 +53,8 @@ const Table = ({ onOpen }: TTable) => {
         {data.map((item) => (
           <Tr key={item.id}>
             <Td>{item.description}</Td>
-            <Td isNumeric>{item.valueA}</Td>
-            <Td isNumeric>{item.valueB}</Td>
+            <Td>{item.valueA}</Td>
+            <Td>{item.valueB}</Td>
             <Td>
               <Button onClick={() => onOpen(item)}>Selecionar</Button>
             </Td>
