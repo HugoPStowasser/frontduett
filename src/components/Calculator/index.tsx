@@ -24,19 +24,18 @@ type TCalculator = {
 
 type THandleClick = {
   type: "divider" | "multiply";
-}
+};
 
 const Calculator = ({ selectedData, isOpen, onClose }: TCalculator) => {
   const [result, setResult] = useState(0);
 
-  const handleClick = ({type}:THandleClick) =>{
-    if(type === "divider"){
-      setResult(selectedData.valueA / selectedData.valueB)
+  const handleClick = ({ type }: THandleClick) => {
+    if (type === "divider") {
+      setResult(selectedData.valueA / selectedData.valueB);
+    } else if (type === "multiply") {
+      setResult(selectedData.valueA * selectedData.valueB);
     }
-    else if(type === "multiply"){
-      setResult(selectedData.valueA * selectedData.valueB)
-    }
-  }
+  };
 
   return (
     <>
@@ -55,28 +54,44 @@ const Calculator = ({ selectedData, isOpen, onClose }: TCalculator) => {
             <Stack spacing="24px">
               <Box>
                 <FormLabel htmlFor="description">Descrição</FormLabel>
-                <Input id="description" value={selectedData?.description} disabled/>
+                <Input
+                  id="description"
+                  value={selectedData?.description}
+                  disabled
+                />
               </Box>
               <Box>
                 <FormLabel htmlFor="valueA">Valor A</FormLabel>
-                <Input id="valueA" value={selectedData?.valueA} disabled/>
+                <Input id="valueA" value={selectedData?.valueA} disabled />
               </Box>
               <Box>
                 <FormLabel htmlFor="valueB">Valor B</FormLabel>
-                <Input id="valueB" value={selectedData?.valueB} disabled/>
+                <Input id="valueB" value={selectedData?.valueB} disabled />
               </Box>
               <Box>
                 <FormLabel htmlFor="result">Resultado</FormLabel>
-                <Input id="result" value={result} disabled/>
+                <Input id="result" value={result} disabled />
               </Box>
             </Stack>
           </DrawerBody>
 
           <DrawerFooter borderTopWidth="1px">
-            <Button variant="outline" mr={3} onClick={() => handleClick({type:"divider"})}>
-              Dividir
-            </Button>
-            <Button colorScheme="blue" onClick={() => handleClick({type:"multiply"})}>Multiplicar</Button>
+            <Stack spacing={4} direction="row" align="center">
+              <Button
+                colorScheme="green"
+                width='130px'
+                onClick={() => handleClick({ type: "divider" })}
+              >
+                Dividir
+              </Button>
+              <Button
+                colorScheme="blue"
+                width='130px'
+                onClick={() => handleClick({ type: "multiply" })}
+              >
+                Multiplicar
+              </Button>
+            </Stack>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

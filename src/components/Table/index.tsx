@@ -7,6 +7,8 @@ import {
   Td,
   Button,
 } from "@chakra-ui/react";
+import axios from "axios";
+import cors from "cors";
 import { useEffect, useState } from "react";
 
 export type TData = {
@@ -17,28 +19,25 @@ export type TData = {
 };
 
 type TTable = {
-  onOpen: (T:TData) => void;
-}
+  onOpen: (T: TData) => void;
+};
 
-const Table = ({onOpen}:TTable) => {
+const Table = ({ onOpen }: TTable) => {
   const [data, setData] = useState<TData[]>([]);
 
   const getData = () => {
-    //todo fetch axios
-    setData([
-      {
-        id: 1,
-        description: "Banana",
-        valueA: 10,
-        valueB: 2,
-      },
-      {
-        id: 2,
-        description: "Maçã",
-        valueA: 0,
-        valueB: 5,
-      },
-    ]);
+    axios
+      .get("https://localhost:7242/Fruit")
+      .then(function (response: any) {
+        setData(response.data);
+      })
+      .catch(function (error: any) {
+        // manipula erros da requisição
+        console.error(error);
+      })
+      .finally(function () {
+        // sempre será executado
+      });
   };
 
   useEffect(getData, []);
